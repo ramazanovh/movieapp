@@ -14,7 +14,7 @@ fetch(api)
 
 function renderMovies(data) {
   cards.innerHTML = "";
-  data.forEach(
+  data.slice(0, 20).forEach(
     (movie) =>
       (cards.innerHTML += `
         <div class="card" style="width: 19rem">
