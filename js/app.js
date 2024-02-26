@@ -4,7 +4,7 @@ let cards = document.querySelector(".cards");
 let modal = document.querySelector(".modal");
 let allmovies;
 let api = "https://api.tvmaze.com/shows";
-
+let paginationCount = 0;
 fetch(api)
   .then((res) => res.json())
   .then((data) => {
@@ -19,24 +19,22 @@ function renderMovies(data) {
       (cards.innerHTML += `
         <div class="card" style="width: 19rem">
           <img
-            src="https://marketplace.canva.com/EAFTl0ixW_k/1/0/1131w/canva-black-white-minimal-alone-movie-poster-YZ-0GJ13Nc8.jpg"
+            src="${movie.image.medium}"
             class="card-img-top"
             alt="..."
           />
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
+            <h5 class="card-title fs-4">${movie.name}</h5>
+            <span>Premiere ${movie.premiered}</span>
+             
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
+            <li class="list-group-item">IMDB Rating: ${movie.rating.average} </li>
+            <li class="list-group-item">Genre: ${movie.genres[0]} </li>
+            <li class="list-group-item">Language: ${movie.language}</li>
           </ul>
           <div class="card-body d-flex justify-content-between">
-            <a href="" class="btn btn-success">Go To Website</a>
+            <a href="${movie.officialSite}" class="btn btn-success">Go To Website</a>
             <button
               type="button"
               class="btn btn-primary"
