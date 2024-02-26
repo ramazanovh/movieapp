@@ -10,8 +10,8 @@ fetch(api)
   .then((data) => {
     renderMovies(data);
     allmovies = data;
+    data.forEach((el) => console.log(el.id));
   });
-
 function renderMovies(data) {
   cards.innerHTML = "";
   data.slice(0, 20).forEach(
@@ -35,16 +35,17 @@ function renderMovies(data) {
           </ul>
           <div class="card-body d-flex justify-content-between">
             <a href="${movie.officialSite}" class="btn btn-success">Go To Website</a>
-            <button
-              type="button"
+            <a
+            href="../movie.html?id=${movie.id}"
+              
               class="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+           
             >
               Go To Detail
-            </button>
+            </a>
           </div>
         </div>
+        
         `)
   );
 }
